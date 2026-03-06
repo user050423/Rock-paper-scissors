@@ -17,3 +17,17 @@ function getPlayerChoice() {
 }
 
 const player = getPlayerChoice();
+
+function play(player, computer) {
+    if (player === computer) {
+        return "It's a tie!";
+    } else if (player === "rock" && computer === "scissors" || player === "paper" && computer === "rock" || player === "scissors" && computer === "paper") {
+        return "You win!";
+    } else {
+        return "You lose!";
+    }
+}
+
+const result = play(player, computer);
+console.log(result);
+
