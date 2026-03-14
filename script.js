@@ -9,10 +9,25 @@ function getComputerChoice() {
     } 
 }
 
-function getPlayerChoice() {
-    const player = prompt("Rock, Paper, or Scissors?").toLowerCase();
-    return player;
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+
+
+const displayScore = document.createElement("div");
+document.body.appendChild(displayScore);
+
+function handleClick(player) {
+    const computer = getComputerChoice();
+    displayScore.textContent = playRound(player, computer);
+    checkWinner();
 }
+
+rockButton.addEventListener("click", () => handleClick("rock"));
+
+paperButton.addEventListener("click", () => handleClick("paper"));
+
+scissorsButton.addEventListener("click", () => handleClick("scissors"));
 
 
 
@@ -31,21 +46,11 @@ function playRound(player, computer) {
     }
 }
 
-function playGame() {
-   
-    for (let i = 0; i < 5; i++) {
-        const computer = getComputerChoice();
-        const player = getPlayerChoice();
 
-        console.log(playRound(player, computer));
-        console.log(`Score: Player ${playerScore} - Computer ${computerScore}`);
-    }
-
+function checkWinner() {
     if (playerScore === 5) {
-        console.log("Congratulations! You won the game!");  
-    } else {
-        console.log("Sorry, you lost the game. Better luck next time!");    
+        displayScore.textContent += " Congratulations! You won the game!";
+    } else if (computerScore === 5) {
+        displayScore.textContent += " Sorry, you lost the game. Better luck next time!";
     }
 }
-
-playGame();
